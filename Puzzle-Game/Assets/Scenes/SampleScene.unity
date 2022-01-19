@@ -206,6 +206,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &697421186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 697421187}
+  m_Layer: 0
+  m_Name: Match Finder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &697421187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697421186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6110026, y: 5.7185397, z: -0.69366175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1698849203
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +268,13 @@ MonoBehaviour:
   width: 7
   height: 7
   bjTilePrefab: {fileID: 8206533172756755108, guid: f30d3b30f015677468521dfeb086fb80, type: 3}
+  gems:
+  - {fileID: 1960787831864694665, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
+  - {fileID: 759438077335474442, guid: 78c29ffc75e674e4a9a044ec69bcc995, type: 3}
+  - {fileID: 3734008424910714568, guid: 2bf0a730a85cf1a41b357de35ab26a02, type: 3}
+  - {fileID: 8222379690916287937, guid: bec50fbcecde4cd438eb2eb4d8473e49, type: 3}
+  - {fileID: 6865588835230060100, guid: 9a18418b57fce6a4b93112fb1a8c0276, type: 3}
+  gemSpeed: 7
 --- !u!4 &1698849205
 Transform:
   m_ObjectHideFlags: 0

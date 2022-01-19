@@ -7,10 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7075006002664565626, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.8102564
+      objectReference: {fileID: 0}
+    - target: {fileID: -7075006002664565626, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.9358974
+      objectReference: {fileID: 0}
     - target: {fileID: 1960787831864694664, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 15913fd90bd479a45a568c3067a75c5d, type: 3}
+    - target: {fileID: 1960787831864694665, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1960787831864694667, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1960787831864694670, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
       propertyPath: m_Name
-      value: Gem Orange
+      value: Gem Orange Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8ab51ea8161eb45b3cab17b654f461, type: 3}
