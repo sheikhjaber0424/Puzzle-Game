@@ -15,12 +15,12 @@ public class Board : MonoBehaviour
 
     public float gemSpeed;
 
-    public MatchFinder matchfind;
+    public MatchFinder matchFind;
     // Start is called before the first frame update
 
     private void Awake()
     {
-        matchfind = FindObjectOfType<MatchFinder>();
+        matchFind = FindObjectOfType<MatchFinder>();
     }
 
     void Start()
@@ -31,7 +31,7 @@ public class Board : MonoBehaviour
 
     private void Update()
     {
-        matchfind.FindAllMatches();
+        matchFind.FindAllMatches();
     }
     private void Setup()
     {
@@ -43,7 +43,7 @@ public class Board : MonoBehaviour
                 GameObject bgTile = Instantiate(bjTilePrefab, pos, Quaternion.identity); // Quaternion.identity means 0 rotation for our object
                 bgTile.transform.parent = transform;
                 bgTile.name = "BG tile -" + x + "," + y;
-
+           
                 int gemToUse = Random.Range(0, gems.Length);
 
                 int iterations = 0;
@@ -87,5 +87,54 @@ public class Board : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void DestroyMatchedGem(Vector2Int pos)
+    {
+        if(allGems[pos.x, pos.y])
+        {
+            if(allGems[pos.x, pos.y].isMatched)
+            {
+                Destroy(allGems[pos.x,pos.y].gameObject);
+                allGems[pos.x, pos.y] = null;
+            }
+        }
+    }
+
+    public void DestroyMatches()
+    {
+        for(int i = 0; i < matchFind.currentMatches.Count; i++)
+            {
+                if(matchFind.currentMatches[i] != null)
+                {
+                    DestroyMatchedGem(matchFind.currentMatches[i].posIndex);
+                }
+            }
+        StartCoroutine(DecreaseRowCo());
+    }
+
+    private IEnumerator DecreaseRowCo()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        int nullCounter = 0;
+
+        for(int x = 0; x< width; x++)
+        {
+            for(int y = 0; y < height; y++)
+            {
+                if(allGems[x, y] == null)
+                {
+                    nullCounter++;
+                }
+                else if(nullCounter > 0)
+                {
+                    allGems[x,y].posIndex.y -= nullCounter;
+                    allGems[x,y - nullCounter] = allGems[x,y];
+                    allGems[x, y] = null;
+                }
+            }
+            nullCounter = 0;
+        }
     }
 }
