@@ -14,27 +14,45 @@ public class Board : MonoBehaviour
     public Gem[,] allGems;
 
     public float gemSpeed;
+
+    public MatchFinder matchfind;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        matchfind = FindObjectOfType<MatchFinder>();
+    }
+
     void Start()
     {
         allGems = new Gem[width,height];
         Setup();
     }
 
+    private void Update()
+    {
+        matchfind.FindAllMatches();
+    }
     private void Setup()
     {
-        for (int i = 0; i < width; i++)
+        for (int x = 0; x < width; x++)
         {
-            for (int j = 0; j < height; j++)
+            for (int y = 0; y < height; y++)
             {
-                Vector2 pos = new Vector2(i, j);
+                Vector2 pos = new Vector2(x, y);
                 GameObject bgTile = Instantiate(bjTilePrefab, pos, Quaternion.identity); // Quaternion.identity means 0 rotation for our object
                 bgTile.transform.parent = transform;
-                bgTile.name = "BG tile -" + i + "," + j;
+                bgTile.name = "BG tile -" + x + "," + y;
 
                 int gemToUse = Random.Range(0, gems.Length);
 
-                SpawnGem(new Vector2Int(i, j), gems[gemToUse]);
+                int iterations = 0;
+                while (MatchesAt(new Vector2Int(x, y), gems[gemToUse]) && iterations < 100)
+                {
+                    gemToUse = Random.Range(0, gems.Length);
+                    iterations++;
+                }
+                SpawnGem(new Vector2Int(x, y), gems[gemToUse]);
             }
         }
     }
@@ -47,5 +65,27 @@ public class Board : MonoBehaviour
         allGems[pos.x,pos.y] = gem;
 
         gem.SetupGem(pos, this);
+    }
+
+
+    //stop matching while creating the board
+    bool MatchesAt(Vector2Int posToCheck, Gem gemToCheck)
+    {
+        if(posToCheck.x > 1)
+        {
+            if(allGems[posToCheck.x - 1, posToCheck.y].type == gemToCheck.type && allGems[posToCheck.x - 2, posToCheck.y].type == gemToCheck.type)
+            {
+                return true;
+            }
+        }
+
+        if (posToCheck.y > 1)
+        {
+            if (allGems[posToCheck.x, posToCheck.y - 1].type == gemToCheck.type && allGems[posToCheck.x, posToCheck.y - 2].type == gemToCheck.type)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
